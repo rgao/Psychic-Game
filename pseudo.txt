@@ -1,0 +1,20 @@
+<script>
+
+Declare and initialize all variables (wins, losses, guesses remaining, and guessed letters)
+    *in the html document, give an id to each of their values so they can be modified by the script via getelementbyid
+
+Make an array consisting of all alphabetical letters
+
+Use a function generating a random number to represent a random letter chosen by the computer 
+
+User inputs a key to generate a event:
+    if user's key matches the random letter:
+        user wins and the game resets
+    else:
+        decrease guesses left by 1,
+        if no guesses left:
+            user loses and game resets
+        else:
+            add letter to list of guessed letters
+
+</script>
