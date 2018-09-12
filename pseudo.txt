@@ -22,3 +22,5 @@ User inputs a key to generate a event:
                 add letter to list of guessed letters
 
 </script>
+
+ 

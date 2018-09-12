@@ -1,7 +1,7 @@
 var n_wins = 0;
 var n_losses = 0;
 var n_guesses = 9;
-var guessed_letters = [];
+var guessed_letters = [3];
 
 var alphabet = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"];
 
@@ -10,7 +10,7 @@ console.log(computerGuess);
 document.onkeyup = function(event) {
     var letter = false;
     for (i = 0; i < alphabet.length; i++) {
-        if (event.key === alphabet[i]) {
+        if (event.key == alphabet[i]) {
             letter = true;
         };
     };
@@ -26,20 +26,32 @@ document.onkeyup = function(event) {
         document.getElementById("already_guessed").textContent = guessed_letters;
         computerGuess = alphabet[Math.floor(Math.random() * 26)];
     } else {
-        n_guesses -= 1;
-        document.getElementById("guesses").textContent = n_guesses;
-        if (n_guesses === 0) {
-            n_losses += 1;
-            document.getElementById("losses").textContent = n_losses;
-            n_guesses = 9;
-            document.getElementById("guesses").textContent = n_guesses;
-            guessed_letters = [];
-            document.getElementById("already_guessed").textContent = guessed_letters;
-            computerGuess = alphabet[Math.floor(Math.random() * 26)];
+        var duplicate = false
+        for (var d = 0; d < 1; d++) {
+            if (event.key == guessed_letters[d]) {
+            duplicate = true;
+            };
+        };
+        if (duplicate === true) {
+            dupMessage = document.createElement("div");
+            dupMessage.textContent = "You have already guessed this letter. Please choose a different letter.";
+            document.getElementById("section").appendChild(dupMessage);
         } else {
-            guessed_letters.push(event.key);
-            document.getElementById("already_guessed").textContent = guessed_letters;
+            n_guesses -= 1;
+            document.getElementById("guesses").textContent = n_guesses;
+            if (n_guesses === 0) {
+                n_losses += 1;
+                document.getElementById("losses").textContent = n_losses;
+                n_guesses = 9;
+                document.getElementById("guesses").textContent = n_guesses;
+                guessed_letters = [];
+                document.getElementById("already_guessed").textContent = guessed_letters;
+                computerGuess = alphabet[Math.floor(Math.random() * 26)];
+            } else {
+                guessed_letters.push(" " + event.key);
+                document.getElementById("already_guessed").textContent = guessed_letters;
 
+            };
         };
     };
 };
