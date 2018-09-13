@@ -68,7 +68,7 @@ document.onkeyup = function(event) {
             } else {
                 // standard incorrect guess: adds input to array of guessed letters
                 guessed_letters.push(event.key);
-                document.getElementById("already_guessed").textContent = guessed_letters;
+                document.getElementById("already_guessed").textContent = guessed_letters.join(" ");
 
             };
         };
